@@ -1,0 +1,11 @@
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.exe
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.deps.json
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.runtimeconfig.json
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.runtimeconfig.dev.json
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.dll
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\worker-server.pdb
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.csprojAssemblyReference.cache
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.AssemblyInfoInputs.cache
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.AssemblyInfo.cs
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.dll
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.pdb

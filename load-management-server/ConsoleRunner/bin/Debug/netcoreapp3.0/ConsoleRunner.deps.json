@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "ConsoleRunner/1.0.0": {
+        "dependencies": {
+          "Business": "1.0.0",
+          "ConnectionLayer": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleRunner.dll": {}
+        }
+      },
+      "Business/1.0.0": {
+        "runtime": {
+          "Business.dll": {}
+        }
+      },
+      "ConnectionLayer/1.0.0": {
+        "runtime": {
+          "ConnectionLayer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleRunner/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ConnectionLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
