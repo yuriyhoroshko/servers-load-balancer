@@ -1,0 +1,10 @@
+D:\load-balancer\load-management-server\Data\bin\Debug\netcoreapp3.0\Data.deps.json
+D:\load-balancer\load-management-server\Data\bin\Debug\netcoreapp3.0\Data.dll
+D:\load-balancer\load-management-server\Data\obj\Debug\netcoreapp3.0\Data.csprojAssemblyReference.cache
+D:\load-balancer\load-management-server\Data\obj\Debug\netcoreapp3.0\Data.AssemblyInfoInputs.cache
+D:\load-balancer\load-management-server\Data\obj\Debug\netcoreapp3.0\Data.AssemblyInfo.cs
+D:\load-balancer\load-management-server\Data\bin\Debug\netcoreapp3.0\Data.pdb
+D:\load-balancer\load-management-server\Data\obj\Debug\netcoreapp3.0\Data.dll
+D:\load-balancer\load-management-server\Data\obj\Debug\netcoreapp3.0\Data.pdb
+D:\load-balancer\load-management-server\Data\bin\Debug\netcoreapp3.0\Data.runtimeconfig.json
+D:\load-balancer\load-management-server\Data\bin\Debug\netcoreapp3.0\Data.runtimeconfig.dev.json

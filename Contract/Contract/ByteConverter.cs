@@ -1,6 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 
-namespace Business
+namespace Contract
 {
     public static class ByteConverter
     {
@@ -15,6 +16,17 @@ namespace Business
         {
             var len = Math.Min(matrix.GetLength(0) * matrix.GetLength(1) * System.Runtime.InteropServices.Marshal.SizeOf(typeof(int)), byteArray.Length);
             Buffer.BlockCopy(byteArray, 0, matrix, 0, len);
+        }
+
+        public static byte[] GetByteMatrixSize(int[,] matrix)
+        {
+            int size = matrix.GetLength(0);
+            return BitConverter.GetBytes(size);
+        }
+
+        public static int GetMatrixSize(byte[] size)
+        {
+            return BitConverter.ToInt32(size);
         }
     }
 }

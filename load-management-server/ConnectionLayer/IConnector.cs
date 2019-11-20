@@ -8,8 +8,10 @@ namespace ConnectionLayer
     {
         bool EstablishConnection(string ipAddress, int port = 9915);
 
-        bool SendBytes(byte[] bytes);
+        void SendBytes(byte[] bytes, string ipAddress, int port = 9915);
 
-        bool Disconnect(string ipAddress);
+        void ReceiveBytes(ref byte[] buffer, string ipAddress, int port = 9915);
+
+        bool Disconnect(string ipAddress, int port);
     }
 }

@@ -8,6 +8,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\ConnectionLayer\ConnectionLayer.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Contract">
+      <HintPath>..\..\Contract\Contract\bin\Debug\netcoreapp3.0\Contract.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

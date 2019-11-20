@@ -1,4 +1,6 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace ConnectionLayer.Connector
 {
@@ -6,18 +8,26 @@ namespace ConnectionLayer.Connector
     {
         private readonly byte[] _connectingByte = {101};
 
-        private readonly Socket _socketConnection =
-            new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private static Connector instanse;
+
+        private readonly ConnectionFactory _connectionFactory = new ConnectionFactory();
+
+        private Connector() { }
+
+        public static Connector GetInstance()
+        {
+            return instanse ??= new Connector();
+        }
+
+        private Dictionary<String, Socket> connectionsDictionary = new Dictionary<string, Socket>();
 
         public bool EstablishConnection(string ipAddress, int port = 9915)
         {
             try
             {
-                var response = new byte[1];
-                _socketConnection.Connect(ipAddress, port);
-                _socketConnection.Send(_connectingByte);
-                _socketConnection.Receive(response);
-                return response[0] == 111;
+                connectionsDictionary.Add(ParseIpPort(ipAddress,port), _connectionFactory.GenerateConnection(ipAddress, port));
+                
+                return true;
             }
             catch
             {
@@ -25,17 +35,25 @@ namespace ConnectionLayer.Connector
             }
         }
 
-        public bool SendBytes(byte[] bytes)
+        public void SendBytes(byte[] bytes, string ipAddress, int port = 9915)
         {
-            var buffer = new byte[1];
-            _socketConnection.Send(bytes);
-            _socketConnection.Receive(buffer);
-            return buffer[0] == 191;
+            connectionsDictionary[ParseIpPort(ipAddress,port)].Send(bytes);
         }
 
-        public bool Disconnect(string ipAddress)
+        public void ReceiveBytes(ref byte[] buffer, string ipAddress, int port = 9915)
         {
+            connectionsDictionary[ParseIpPort(ipAddress, port)].Receive(buffer);
+        }
+
+        public bool Disconnect(string ipAddress, int port = 9915)
+        {
+            connectionsDictionary[ParseIpPort(ipAddress, port)].Disconnect(true);
             return true;
+        }
+
+        private string ParseIpPort(string ipAddress, int port)
+        {
+            return $"{ipAddress}:{port}";
         }
     }
 }

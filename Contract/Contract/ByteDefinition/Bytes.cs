@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace worker_server.ByteDefinition
+namespace Contract.ByteDefinition
 {
     public static class Bytes
     {
@@ -10,11 +8,15 @@ namespace worker_server.ByteDefinition
         {
             ["connection_request"] = new byte[] {101},
             ["connection_response"] = new byte[] {111},
+            ["size_accepted"] = new byte[] {155},
+            ["matrix_accepted"] = new byte[] {156}
         };
 
         public static Dictionary<string, byte> byteDef = new Dictionary<string, byte>()
         {
             ["task_prefix"] = (byte) 153,
+            ["size_prefix"] = (byte) 112,
+            
         };
     }
 }

@@ -6,4 +6,10 @@
     <RootNamespace>worker_server</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Contract">
+      <HintPath>..\..\Contract\Contract\bin\Debug\netcoreapp3.0\Contract.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

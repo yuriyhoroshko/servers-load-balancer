@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
-using worker_server.ByteDefinition;
+using Contract.ByteDefinition;
 
 namespace worker_server
 {
@@ -16,7 +16,7 @@ namespace worker_server
             socket.Listen(1);
             while (true)
             {
-                byte[] buffer = new byte[2073741824];
+                byte[] buffer = new byte[268435456];
                 var handler = socket.Accept();
                 var isDisconnected = false;
                 while (!isDisconnected)
@@ -30,7 +30,7 @@ namespace worker_server
                         }
                         else
                         {
-                            CommandHandler.Handle(buffer);
+                            CommandHandler.Handle(buffer,handler);
                         }
                     }
 
@@ -40,7 +40,6 @@ namespace worker_server
                         handler.Disconnect(true);
                         buffer = null;
                         GC.Collect();
-                        Console.ReadKey();
                         Console.WriteLine("Waiting for new connection....");
                         isDisconnected = true;
                     }

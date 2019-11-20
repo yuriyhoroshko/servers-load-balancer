@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConnectionLayer;
+using ConnectionLayer.Connector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore;
 using Microsoft.Extensions.Logging;
+using Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace load_management_server
 {
@@ -26,7 +30,11 @@ namespace load_management_server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConnector, Connector>();
+
             services.AddControllers();
+
+            services.AddDbContext<LoadManagerContext>();
 
             services.AddSwaggerGen();
         }

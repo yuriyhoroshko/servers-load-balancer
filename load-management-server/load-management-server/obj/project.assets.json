@@ -2939,6 +2939,30 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "ConnectionLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "compile": {
+          "bin/placeholder/ConnectionLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConnectionLayer.dll": {}
+        }
+      },
+      "Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Data.dll": {}
+        }
       }
     }
   },
@@ -8995,12 +9019,25 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "ConnectionLayer/1.0.0": {
+      "type": "project",
+      "path": "../ConnectionLayer/ConnectionLayer.csproj",
+      "msbuildProject": "../ConnectionLayer/ConnectionLayer.csproj"
+    },
+    "Data/1.0.0": {
+      "type": "project",
+      "path": "../Data/Data.csproj",
+      "msbuildProject": "../Data/Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
+      "ConnectionLayer >= 1.0.0",
+      "Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 3.0.0",
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 3.0.0",
       "Microsoft.Extensions.Logging.Debug >= 3.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.0.0",
       "Swashbuckle.AspNetCore >= 5.0.0-rc4",
@@ -9036,7 +9073,14 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
+              "projectPath": "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj"
+            },
+            "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
+              "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -9055,6 +9099,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
+          "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",
             "version": "[3.0.0, )"
           },

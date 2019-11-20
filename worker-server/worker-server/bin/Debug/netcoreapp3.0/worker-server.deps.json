@@ -7,8 +7,19 @@
   "targets": {
     ".NETCoreApp,Version=v3.0": {
       "worker-server/1.0.0": {
+        "dependencies": {
+          "Contract": "1.0.0.0"
+        },
         "runtime": {
           "worker-server.dll": {}
+        }
+      },
+      "Contract/1.0.0.0": {
+        "runtime": {
+          "Contract.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -16,6 +27,11 @@
   "libraries": {
     "worker-server/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Contract/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

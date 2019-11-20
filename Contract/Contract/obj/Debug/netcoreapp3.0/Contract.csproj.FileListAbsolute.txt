@@ -1,0 +1,7 @@
+D:\load-balancer\Contract\Contract\bin\Debug\netcoreapp3.0\Contract.deps.json
+D:\load-balancer\Contract\Contract\bin\Debug\netcoreapp3.0\Contract.dll
+D:\load-balancer\Contract\Contract\bin\Debug\netcoreapp3.0\Contract.pdb
+D:\load-balancer\Contract\Contract\obj\Debug\netcoreapp3.0\Contract.AssemblyInfoInputs.cache
+D:\load-balancer\Contract\Contract\obj\Debug\netcoreapp3.0\Contract.AssemblyInfo.cs
+D:\load-balancer\Contract\Contract\obj\Debug\netcoreapp3.0\Contract.dll
+D:\load-balancer\Contract\Contract\obj\Debug\netcoreapp3.0\Contract.pdb

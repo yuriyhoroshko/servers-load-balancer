@@ -6,3 +6,8 @@ D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Busines
 D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Business.AssemblyInfo.cs
 D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Business.dll
 D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Business.pdb
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Contract.dll
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Data.dll
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Data.pdb
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Contract.pdb
+D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Business.csproj.CopyComplete

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectionLayer", "Connecti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRunner", "ConsoleRunner\ConsoleRunner.csproj", "{AE3DD0C9-6C8E-40F1-936E-92772876BC7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{BDB3AA50-CA10-42F3-AFFB-AF836458D8C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{BDB3AA50-CA10-42F3-AFFB-AF836458D8C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "Scheduler\Scheduler.csproj", "{69B4F761-2505-4436-836A-5AE670310CDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BDB3AA50-CA10-42F3-AFFB-AF836458D8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB3AA50-CA10-42F3-AFFB-AF836458D8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB3AA50-CA10-42F3-AFFB-AF836458D8C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B4F761-2505-4436-836A-5AE670310CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B4F761-2505-4436-836A-5AE670310CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B4F761-2505-4436-836A-5AE670310CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B4F761-2505-4436-836A-5AE670310CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

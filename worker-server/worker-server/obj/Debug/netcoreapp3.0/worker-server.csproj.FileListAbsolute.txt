@@ -9,3 +9,6 @@ D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-serv
 D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.AssemblyInfo.cs
 D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.dll
 D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.pdb
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\Contract.dll
+D:\load-balancer\worker-server\worker-server\bin\Debug\netcoreapp3.0\Contract.pdb
+D:\load-balancer\worker-server\worker-server\obj\Debug\netcoreapp3.0\worker-server.csproj.CopyComplete
