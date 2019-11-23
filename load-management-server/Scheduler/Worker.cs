@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Business;
 using ConnectionLayer;
+using Data.Repository;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -32,9 +33,13 @@ namespace Scheduler
 
                 unassignedTasks.ForEach(t => _computeTaskService.AssignTask(t.TaskID));
 
-                List<int> assignedTasksId = await _computeTaskService.GetIdToSendList();
+                var assignedTasksId = await _computeTaskService.GetIdToSendList();
 
                 assignedTasksId.ForEach(t => _computeTaskService.SendTask(t));
+
+                var workingTasks = await TaskRepository.GetWorkingTasks();
+
+                workingTasks.ForEach(t => _computeTaskService.UpdateTaskProgress(t.TaskID));
 
                 await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
             }

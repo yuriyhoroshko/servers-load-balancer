@@ -15,17 +15,18 @@ namespace Data.Repository
         {
             using (var dbContext = new LoadManagerContext())
             {
-                var serverList = await dbContext.WorkerServers.Select(b => new {b.WorkerServerID})
-                    .LeftJoin(dbContext.Tasks, p => p.WorkerServerID, s => s.ServerID, (a, g) => new
-                    {
-                        g.Status,
-                        g.ServerID
-                    }).Where(p => p.Status != "Done").GroupBy(g => g.ServerID).Select(p => new
-                    {
-                        WorkerServerId = p.Key,
-                        count = p.Count()
-                    }).OrderBy(p => p.count).ToListAsync();
-                return serverList[0].WorkerServerId.GetValueOrDefault(-1);
+                var serverId = await dbContext.WorkerServers.Select(b => b.WorkerServerID).Where(b =>
+                    dbContext.Tasks.Count(p => p.ServerID == b) == 0).FirstOrDefaultAsync();
+                    //.LeftJoin(dbContext.Tasks, p => p.WorkerServerID, s => s.ServerID, (a, g) => new
+                    //{
+                    //    g.Status,
+                    //    g.ServerID
+                    //}).Where(p => p.Status != "Done").GroupBy(g => g.ServerID).Select(p => new
+                    //{
+                    //    WorkerServerId = p.Key,
+                    //    count = p.Count()
+                    //}).OrderBy(p => p.count).FirstOrDefaultAsync();
+                return serverId;
             }
         }
 

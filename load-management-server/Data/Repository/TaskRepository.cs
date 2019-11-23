@@ -89,6 +89,23 @@ namespace Data.Repository
                 await dbContext.SaveChangesAsync();
             }
         }
+
+        public static async Task<List<TaskDto>> GetWorkingTasks()
+        {
+            using (var dbContext = new LoadManagerContext())
+            {
+                var tasks = await dbContext.Tasks.Where(t => t.Status == "Working").Select(t => new TaskDto
+                    {
+                        TaskID = t.TaskID,
+                        Status = t.Status,
+                        DonePercent = t.DonePercent,
+                        ServerID = t.ServerID
+                    })
+                    .ToListAsync();
+
+                return tasks;
+            }
+        }
     }
 }
 

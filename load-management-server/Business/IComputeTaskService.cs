@@ -21,5 +21,7 @@ namespace Business
         void AssignTask(int taskId);
 
         Task<List<int>> GetIdToSendList();
+
+        void UpdateTaskProgress(int taskId);
     }
 }
