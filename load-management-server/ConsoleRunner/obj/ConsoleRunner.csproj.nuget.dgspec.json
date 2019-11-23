@@ -30,6 +30,9 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
+              "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj"
+              },
               "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
                 "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
               }
@@ -88,7 +91,11 @@
         },
         "frameworks": {
           "netcoreapp3.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

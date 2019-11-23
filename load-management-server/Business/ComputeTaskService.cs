@@ -1,13 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Contract;
 using System.IO;
 using System.Threading.Tasks;
 using Data.DTO;
 using Data.Repository;
+using ConnectionLayer;
+
 namespace Business
 {
     public class ComputeTaskService: IComputeTaskService
     {
+        private IConnector _connectionService;
+
+        public ComputeTaskService(IConnector connectionService)
+        {
+            _connectionService = connectionService;
+        }
 
         public async void StoreTask(int[,] matrix) {
             int taskId = await TaskRepository.CreateNewTask();
@@ -57,8 +66,30 @@ namespace Business
             return await TaskRepository.GetUnassignedTasks();
         }
 
-        public void SendTask(int taskId) {
-            
+        public async Task<List<int>> GetIdToSendList()
+        {
+            return await TaskRepository.GetAssignedTasks();
+        }
+
+        public async void SendTask(int taskId)
+        {
+            int[,] task = ReadStoredTask(taskId);
+            byte[] matrixSize = ByteConverter.GetByteMatrixSize(task);
+            byte[] matrix = ByteConverter.GetBytes(task);
+            byte[] buffer = {};
+            WorkerServerDto server = await WorkerRepository.GetServerByAssignedTaskId(taskId);
+
+            matrixSize.AddPrefix(Contract.ByteDefinition.Bytes.byteDef["size_prefix"]);
+            matrix.AddPrefix(Contract.ByteDefinition.Bytes.byteDef["task_prefix"]);
+
+            _connectionService.SendBytes(matrixSize,server.IpAddress,server.Port);
+            _connectionService.ReceiveBytes(ref buffer,server.IpAddress,server.Port);
+
+            _connectionService.SendBytes(matrix,server.IpAddress,server.Port);
+            _connectionService.ReceiveBytes(ref buffer, server.IpAddress, server.Port);
+
+            TaskRepository.UpdateTaskStatus(taskId,"Working");
+
         }
 
         public void RemoveTask(int taskId) {

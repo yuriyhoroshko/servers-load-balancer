@@ -19,5 +19,7 @@ namespace Business
         int[,] ReadStoredTask(int taskId);
 
         void AssignTask(int taskId);
+
+        Task<List<int>> GetIdToSendList();
     }
 }

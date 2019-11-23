@@ -10,7 +10,7 @@ namespace Data.Repository
     {
         public static async Task<int> CreateNewTask()
         {
-            var emptyTask = new Models.Task() {Status = "Waiting"};
+            var emptyTask = new Models.Task() {Status = "Waiting",DonePercent = (byte) 0};
             using (var dbContext = new LoadManagerContext())
             {
                 dbContext.Tasks.Add(emptyTask);
@@ -31,17 +31,12 @@ namespace Data.Repository
             }
         }
 
-        public static async Task<List<TaskDto>> GetAssignedTasks()
+        public static async Task<List<int>> GetAssignedTasks()
         {
             using (var dbContext = new LoadManagerContext())
             {
                 return await dbContext.Tasks.Where(t => t.Status.Equals("Assigned"))
-                    .Select(p => new TaskDto
-                    {
-                        Status = p.Status,
-                        ServerID = p.ServerID,
-                        TaskID = p.TaskID
-                    }).ToListAsync();
+                    .Select(p => p.TaskID).ToListAsync();
             }
         }
 
@@ -59,12 +54,37 @@ namespace Data.Repository
             }
         }
 
+        public static async Task<TaskDto> GetTask(int taskId)
+        {
+            using (var dbContext = new LoadManagerContext())
+            {
+                return await dbContext.Tasks.Select(x => new TaskDto
+                {
+                    TaskID = x.TaskID,
+                    DonePercent = x.DonePercent,
+                    ServerID = x.ServerID,
+                    Status = x.Status
+                }).FirstOrDefaultAsync(x => x.TaskID == taskId);
+            }
+        }
+
         public static async void UpdateTaskStatus(int taskId, string status)
         {
             using (var dbContext = new LoadManagerContext())
             {
                 var entity = await dbContext.Tasks.FirstOrDefaultAsync(e => e.TaskID == taskId);
                 entity.Status = status;
+                dbContext.Tasks.Update(entity);
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
+        public static async void UpdateTaskPercent(int taskId, byte percent)
+        {
+            using (var dbContext = new LoadManagerContext())
+            {
+                var entity = await dbContext.Tasks.FirstOrDefaultAsync(e => e.TaskID == taskId);
+                entity.DonePercent = percent;
                 dbContext.Tasks.Update(entity);
                 await dbContext.SaveChangesAsync();
             }

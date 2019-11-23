@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Business;
@@ -30,9 +31,12 @@ namespace Scheduler
                 var unassignedTasks = await _computeTaskService.GetUnassignedTasks();
 
                 unassignedTasks.ForEach(t => _computeTaskService.AssignTask(t.TaskID));
-                
 
-                await Task.Delay(TimeSpan.FromMinutes(3), stoppingToken);
+                List<int> assignedTasksId = await _computeTaskService.GetIdToSendList();
+
+                assignedTasksId.ForEach(t => _computeTaskService.SendTask(t));
+
+                await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
             }
         }
     }

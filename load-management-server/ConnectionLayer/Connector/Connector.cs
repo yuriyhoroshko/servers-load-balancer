@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
+using System.Threading.Tasks;
+using Data.DTO;
+using Data.Repository;
 
 namespace ConnectionLayer.Connector
 {
@@ -21,12 +25,17 @@ namespace ConnectionLayer.Connector
 
         private Dictionary<String, Socket> connectionsDictionary = new Dictionary<string, Socket>();
 
-        public bool EstablishConnection(string ipAddress, int port = 9915)
+        public async Task<bool> EstablishConnection(string ipAddress, int port = 9915)
         {
             try
             {
                 connectionsDictionary.Add(ParseIpPort(ipAddress,port), _connectionFactory.GenerateConnection(ipAddress, port));
-                
+                await WorkerRepository.AddNewWorkerServer(new WorkerServerDto
+                {
+                    IpAddress = ipAddress,
+                    IsConnected = true,
+                    Port = port
+                });
                 return true;
             }
             catch
@@ -54,6 +63,11 @@ namespace ConnectionLayer.Connector
         private string ParseIpPort(string ipAddress, int port)
         {
             return $"{ipAddress}:{port}";
+        }
+        private KeyValuePair<string,int> ParseIpPort(string ipAddressWithPort)
+        {
+            string[] pieces = ipAddressWithPort.Split(':');
+            return new KeyValuePair<string, int>(pieces[0],Int32.Parse(pieces[1]));
         }
     }
 }

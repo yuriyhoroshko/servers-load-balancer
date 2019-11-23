@@ -7,5 +7,7 @@
         public string Status { get; set; }
         
         public int? ServerID { get; set; }
+
+        public byte DonePercent { get; set; }
     }
 }

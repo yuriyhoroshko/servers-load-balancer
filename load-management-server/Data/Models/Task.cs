@@ -12,5 +12,7 @@ namespace Data.Models
 
         [ForeignKey("WorkerServer")]
         public int? ServerID { get; set; }
+
+        public byte DonePercent { get; set; }
     }
 }

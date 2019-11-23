@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 
 namespace ConnectionLayer
 {
     public interface IConnector
     {
-        bool EstablishConnection(string ipAddress, int port = 9915);
+        Task<bool> EstablishConnection(string ipAddress, int port = 9915);
 
         void SendBytes(byte[] bytes, string ipAddress, int port = 9915);
 

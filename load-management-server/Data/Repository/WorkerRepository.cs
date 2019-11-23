@@ -51,6 +51,24 @@ namespace Data.Repository
             }
         }
 
+        public static async Task<WorkerServerDto> GetServerByAssignedTaskId(int taskId)
+        {
+            using (var dbContext = new LoadManagerContext())
+            {
+                var server = await dbContext.Tasks.Where(p => p.TaskID == taskId).Select(p =>
+                    new {p.ServerID}).LeftJoin(dbContext.WorkerServers,
+                    p => p.ServerID, o => o.WorkerServerID, (a, g) => new WorkerServerDto
+                    {
+                        IpAddress = g.IpAddress,
+                        IsConnected = g.IsConnected,
+                        Port = g.Port,
+                        WorkerServerID = g.WorkerServerID
+                    }).FirstOrDefaultAsync();
+
+                return server;
+            }
+        }
+
         public static async Task<WorkerServerDto> GetWorkerServer(int workerId)
         {
             using (var dbContext = new LoadManagerContext())

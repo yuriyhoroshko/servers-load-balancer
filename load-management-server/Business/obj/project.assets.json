@@ -1223,6 +1223,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "ConnectionLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ConnectionLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConnectionLayer.dll": {}
+        }
+      },
       "Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
@@ -4801,6 +4814,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "ConnectionLayer/1.0.0": {
+      "type": "project",
+      "path": "../ConnectionLayer/ConnectionLayer.csproj",
+      "msbuildProject": "../ConnectionLayer/ConnectionLayer.csproj"
+    },
     "Data/1.0.0": {
       "type": "project",
       "path": "../Data/Data.csproj",
@@ -4809,6 +4827,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
+      "ConnectionLayer >= 1.0.0",
       "Data >= 1.0.0"
     ]
   },
@@ -4842,6 +4861,9 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
+            "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
+              "projectPath": "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj"
+            },
             "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
               "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
             }
