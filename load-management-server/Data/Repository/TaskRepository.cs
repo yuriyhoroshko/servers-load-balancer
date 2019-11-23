@@ -68,7 +68,7 @@ namespace Data.Repository
             }
         }
 
-        public static async void UpdateTaskStatus(int taskId, string status)
+        public static async Task UpdateTaskStatus(int taskId, string status)
         {
             using (var dbContext = new LoadManagerContext())
             {
@@ -79,7 +79,7 @@ namespace Data.Repository
             }
         }
 
-        public static async void UpdateTaskPercent(int taskId, byte percent)
+        public static async Task UpdateTaskPercent(int taskId, byte percent)
         {
             using (var dbContext = new LoadManagerContext())
             {

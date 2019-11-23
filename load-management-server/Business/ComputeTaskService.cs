@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Data.DTO;
 using Data.Repository;
 using ConnectionLayer;
+using Contract.ByteDefinition;
 
 namespace Business
 {
@@ -90,6 +91,16 @@ namespace Business
 
             TaskRepository.UpdateTaskStatus(taskId,"Working");
 
+        }
+
+        public async void UpdateTaskProgress(int taskId)
+        {
+            byte[] buffer = { };
+            var server = await WorkerRepository.GetServerByAssignedTaskId(taskId);
+            _connectionService.SendBytes(Bytes.type["progress_request"], server.IpAddress, server.Port);
+            _connectionService.ReceiveBytes(ref buffer,server.IpAddress,server.Port);
+            buffer.RemovePrefix();
+            await TaskRepository.UpdateTaskPercent(taskId,buffer[0]);
         }
 
         public void RemoveTask(int taskId) {
