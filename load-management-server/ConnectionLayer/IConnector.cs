@@ -11,5 +11,10 @@ namespace ConnectionLayer
         void ReceiveBytes(ref byte[] buffer, string ipAddress, int port = 9915);
 
         bool Disconnect(string ipAddress, int port);
+
+        bool IsConnected(string ipAddress, int port);
+
+        void ConnectToExistingServer(string ipAddress, int port = 9915);
+
     }
 }

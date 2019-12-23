@@ -1,0 +1,5 @@
+<div class="example-container">
+  <input (input)="updateSize($event.target.value)"/>
+  <button mat-button (click)="storeTask()">Send</button>
+  <span *ngIf="size>50 || size<0" style="color:red">Size must be less than 50 and greater 0</span>
+</div>

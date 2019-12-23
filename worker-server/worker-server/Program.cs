@@ -12,7 +12,7 @@ namespace worker_server
         {
             
             var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Bind(new IPEndPoint(IPAddress.Parse("0.0.0.0"), 9915));
+            socket.Bind(new IPEndPoint(IPAddress.Parse("0.0.0.0"), Int32.Parse(args[0])));
             socket.Listen(1);
             while (true)
             {
@@ -30,7 +30,7 @@ namespace worker_server
                         }
                         else
                         {
-                            CommandHandler.Handle(buffer,handler);
+                            CommandHandler.Handle(ref buffer,handler);
                         }
                     }
 

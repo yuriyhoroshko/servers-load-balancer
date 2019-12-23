@@ -1,0 +1,8 @@
+<div class=login-body>
+  <div *ngIf="loginFailed" style="color:red">LOGIN FAILED!</div>
+  <div class=text>Please, login to your account</div>
+  <div class=input-div>USERNAME<input class=input-field (keyup)="updateUserName($event)"></div>
+  <div class=input-div>PASSWORD<input class=input-field (keyup)="updatePassword($event)"></div>
+  <div class=input-div><button mat-fab (click)="Send()">LOGIN</button></div>
+  <div class=input-div><button mat-fab (click)="SendRegister()">REGISTER</button></div>
+</div>

@@ -6,3 +6,6 @@ D:\load-balancer\load-management-server\ConnectionLayer\obj\Debug\netcoreapp3.0\
 D:\load-balancer\load-management-server\ConnectionLayer\obj\Debug\netcoreapp3.0\ConnectionLayer.AssemblyInfo.cs
 D:\load-balancer\load-management-server\ConnectionLayer\obj\Debug\netcoreapp3.0\ConnectionLayer.dll
 D:\load-balancer\load-management-server\ConnectionLayer\obj\Debug\netcoreapp3.0\ConnectionLayer.pdb
+D:\load-balancer\load-management-server\ConnectionLayer\bin\Debug\netcoreapp3.0\Data.dll
+D:\load-balancer\load-management-server\ConnectionLayer\bin\Debug\netcoreapp3.0\Data.pdb
+D:\load-balancer\load-management-server\ConnectionLayer\obj\Debug\netcoreapp3.0\ConnectionLayer.csproj.CopyComplete

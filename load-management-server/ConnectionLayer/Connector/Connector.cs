@@ -25,6 +25,18 @@ namespace ConnectionLayer.Connector
 
         private Dictionary<String, Socket> connectionsDictionary = new Dictionary<string, Socket>();
 
+        public void ConnectToExistingServer(string ipAddress, int port = 9915)
+        {
+            if (!connectionsDictionary.ContainsKey(ParseIpPort(ipAddress, port)))
+            {
+                var socketConnection = _connectionFactory.GenerateConnection(ipAddress, port);
+                if (socketConnection != null)
+                {
+                    connectionsDictionary.Add(ParseIpPort(ipAddress, port), socketConnection);
+                }
+            }
+        }
+
         public async Task<bool> EstablishConnection(string ipAddress, int port = 9915)
         {
             try
@@ -44,14 +56,27 @@ namespace ConnectionLayer.Connector
             }
         }
 
+        public bool IsConnected(string ipAddress, int port = 9915)
+        {
+            return connectionsDictionary.ContainsKey(ParseIpPort(ipAddress, port));
+        }
+
         public void SendBytes(byte[] bytes, string ipAddress, int port = 9915)
         {
-            connectionsDictionary[ParseIpPort(ipAddress,port)].Send(bytes);
+            try
+            {
+                connectionsDictionary[ParseIpPort(ipAddress, port)].Send(bytes);
+            }
+            catch(KeyNotFoundException) {}
         }
 
         public void ReceiveBytes(ref byte[] buffer, string ipAddress, int port = 9915)
         {
-            connectionsDictionary[ParseIpPort(ipAddress, port)].Receive(buffer);
+            try
+            {
+                connectionsDictionary[ParseIpPort(ipAddress, port)].Receive(buffer);
+            }
+            catch(KeyNotFoundException) { }
         }
 
         public bool Disconnect(string ipAddress, int port = 9915)

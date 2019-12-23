@@ -1,0 +1,14 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  background-color: burlywood;
+  width: 21vw;
+  height: 15vh;
+  margin-top: 35vh;
+  margin-left: 35vw;
+  align-content: center
+}
+
+.example-container > * {
+  width: 100%;
+}

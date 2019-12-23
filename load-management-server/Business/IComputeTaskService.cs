@@ -8,20 +8,40 @@ namespace Business
 {
     public interface IComputeTaskService
     {
-        void StoreTask(int[,] matrix);
+        void StoreTask(int[,] matrix, int userId);
 
-        void SendTask(int taskId);
+        Task SendTask(int taskId);
 
         void RemoveTask(int taskId);
 
         Task<List<TaskDto>> GetUnassignedTasks();
 
-        int[,] ReadStoredTask(int taskId);
+        void StoreTaskResult(int[,] matrix, int taskId);
 
-        void AssignTask(int taskId);
+        Task<int[,]> ReadStoredTask(int taskId);
+
+        Task AssignTask(int taskId);
 
         Task<List<int>> GetIdToSendList();
 
-        void UpdateTaskProgress(int taskId);
+        Task UpdateTaskProgress(int taskId);
+
+        Task CollectResultIfReady(int taskId);
+
+        Task<List<TaskDto>> GetTasks(int userId);
+
+        int[,] ParseStringToMatrix(string input);
+
+        string ParseMatrixToStringWithFormattedView(int[,] matrix);
+
+        Task<int[,]> ReadStoredTaskResult(int taskId);
+
+        int[,] CreateRandomMatrix(int size);
+
+        Task UpdateTaskStatus(int taskId, string status);
+
+        Task<List<TaskDto>> GetCanceledTasks();
+
+        Task CancelTask(int taskId);
     }
 }

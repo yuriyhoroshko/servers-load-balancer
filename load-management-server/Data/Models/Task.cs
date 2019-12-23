@@ -14,5 +14,9 @@ namespace Data.Models
         public int? ServerID { get; set; }
 
         public byte DonePercent { get; set; }
+
+        public int Size { get; set; }
+
+        public int UserId { get; set; }
     }
 }

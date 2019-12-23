@@ -1,0 +1,7 @@
+<mat-toolbar style = "background-color: #e8e1cf">
+    <button mat-button [routerLink]="['../tasks']">My tasks</button>
+    <button mat-button [routerLink]="['../addtask']">Add new task</button>
+  <button mat-button [routerLink]="['../login']">Login/Register</button>
+  <button (click)="clearStorage()" mat-button >Logout</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

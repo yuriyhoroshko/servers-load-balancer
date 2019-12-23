@@ -11,3 +11,5 @@ D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Data.dl
 D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Data.pdb
 D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\Contract.pdb
 D:\load-balancer\load-management-server\Business\obj\Debug\netcoreapp3.0\Business.csproj.CopyComplete
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\ConnectionLayer.dll
+D:\load-balancer\load-management-server\Business\bin\Debug\netcoreapp3.0\ConnectionLayer.pdb

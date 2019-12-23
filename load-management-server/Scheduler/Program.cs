@@ -21,9 +21,7 @@ namespace Scheduler
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<IConnector, Connector>();
-
-                    services.AddScoped<IComputeTaskService, ComputeTaskService>();
+                    services.AddSingleton<IComputeTaskService, ComputeTaskService>();
 
                     services.AddHostedService<Worker>();
                 });

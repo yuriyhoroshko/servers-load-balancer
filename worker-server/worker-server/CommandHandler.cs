@@ -11,19 +11,20 @@ namespace worker_server
         private static int matrixSize = 0;
         private static int progress = 0;
         private static Thread tr;
-        public static void Handle(byte[] byteArray,Socket handler)
+        private static bool isDone = false;
+        private static int[,] matrix;
+        private static CancellationTokenSource token = new CancellationTokenSource();
+
+        public static void Handle(ref byte[] byteArray, Socket handler)
         {
             if (byteArray[0] == Bytes.byteDef["task_prefix"])
             {
                 if (matrixSize != 0)
                 {
-                    int[,] matrix = new int[matrixSize, matrixSize];
+                    matrix = new int[matrixSize, matrixSize];
                     ByteConverter.SetMatrixFromBytes(byteArray.RemovePrefix(), ref matrix);
                     handler.Send(Bytes.type["matrix_accepted"]);
-                    tr = new Thread(l =>
-                    {
-                        MatrixProcessor.ProcessMatrix(ref matrix,ref progress);
-                    });
+                    tr = new Thread(l => { MatrixProcessor.ProcessMatrix(ref matrix, ref progress, ref isDone, token); });
                     tr.Start();
                 }
             } else if (byteArray[0] == Bytes.byteDef["size_prefix"])
@@ -31,11 +32,26 @@ namespace worker_server
                 matrixSize = ByteConverter.GetMatrixSize(byteArray.RemovePrefix());
                 Console.WriteLine($"Received matrix size {matrixSize}x{matrixSize} , receiving matrix");
                 handler.Send(Bytes.type["size_accepted"]);
-            } else if (byteArray == Bytes.type["progress_request"])
+            } else if (byteArray[0] == Bytes.type["progress_request"][0])
             {
                 byte[] byteProgress = new[] {(byte) progress};
                 Console.WriteLine($"progress: {progress}%");
                 handler.Send(byteProgress.AddPrefix(Bytes.byteDef["percent_prefix"]));
+            } else if (byteArray[0] == Bytes.type["collect_data"][0])
+            {
+                byteArray = ByteConverter.GetBytes(matrix);
+                if (isDone)
+                {
+                    handler.Send(byteArray.AddPrefix(Bytes.byteDef["ready_prefix"]));
+                }
+                else
+                {
+                    handler.Send(new byte[2].AddPrefix(Bytes.byteDef["notyet_prefix"]));
+                }
+            }
+            else if (byteArray[0] == Bytes.type["cancel_task"][0])
+            {
+                token.Cancel();
             }
         }
     }

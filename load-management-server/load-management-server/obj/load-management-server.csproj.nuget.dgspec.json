@@ -4,6 +4,78 @@
     "D:\\load-balancer\\load-management-server\\load-management-server\\load-management-server.csproj": {}
   },
   "projects": {
+    "D:\\load-balancer\\load-management-server\\Business\\Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\load-balancer\\load-management-server\\Business\\Business.csproj",
+        "projectName": "Business",
+        "projectPath": "D:\\load-balancer\\load-management-server\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\yurik\\.nuget\\packages\\",
+        "outputPath": "D:\\load-balancer\\load-management-server\\Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\yurik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj"
+              },
+              "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.IdentityModel": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -165,6 +237,9 @@
               },
               "D:\\load-balancer\\load-management-server\\Data\\Data.csproj": {
                 "projectPath": "D:\\load-balancer\\load-management-server\\Data\\Data.csproj"
+              },
+              "D:\\load-balancer\\load-management-server\\Scheduler\\Scheduler.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\Scheduler\\Scheduler.csproj"
               }
             }
           }
@@ -178,6 +253,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -223,6 +302,74 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\load-balancer\\load-management-server\\Scheduler\\Scheduler.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\load-balancer\\load-management-server\\Scheduler\\Scheduler.csproj",
+        "projectName": "Scheduler",
+        "projectPath": "D:\\load-balancer\\load-management-server\\Scheduler\\Scheduler.csproj",
+        "packagesPath": "C:\\Users\\yurik\\.nuget\\packages\\",
+        "outputPath": "D:\\load-balancer\\load-management-server\\Scheduler\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\yurik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\load-balancer\\load-management-server\\Business\\Business.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\Business\\Business.csproj"
+              },
+              "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj": {
+                "projectPath": "D:\\load-balancer\\load-management-server\\ConnectionLayer\\ConnectionLayer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

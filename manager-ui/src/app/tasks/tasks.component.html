@@ -1,0 +1,16 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<div class = "main-container">
+<mat-list class = "list-body">
+    <mat-list-item class = "list-item" *ngFor="let task of tasks">
+        <div class = "row">
+            <div style = "width: 20vw">size: {{task.size}}x{{task.size}}</div>
+            <div style = "width: 20vw">server: {{task.serverID}}</div>
+            <div *ngIf="task.status !== 'Done'" style = "width: 20vw">completion: {{task.donePercent}}%</div>
+            <div *ngIf="task.status === 'Done'" style = "width: 20vw">completion: 100%</div>
+            <div style = "width: 20vw">status: {{task.status}}</div>
+            <button mat-button *ngIf="task.status !== 'Done'" (click)="cancel(task.taskID)">Cancel Task</button>
+            <button mat-button *ngIf="task.status === 'Done'" (click)="getResult(task.taskID)">Download task result</button>
+        </div>
+    </mat-list-item>
+</mat-list>
+</div>

@@ -8,6 +8,7 @@ namespace Data
     internal DbSet<WorkerServer> WorkerServers { get; set; }
 
     internal DbSet<Task> Tasks { get; set; }
+    internal DbSet<User> Users{ get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

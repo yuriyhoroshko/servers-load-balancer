@@ -11,22 +11,14 @@ namespace Data.Repository
 {
     public static class WorkerRepository
     {
-        public static async Task<int> FindLessLoadedServer()
+        public static async Task<int?> FindLessLoadedServer()
         {
             using (var dbContext = new LoadManagerContext())
             {
-                var serverId = await dbContext.WorkerServers.Select(b => b.WorkerServerID).Where(b =>
+                int? serverId = await dbContext.WorkerServers.Select(b => b.WorkerServerID).Where(b =>
                     dbContext.Tasks.Count(p => p.ServerID == b) == 0).FirstOrDefaultAsync();
-                    //.LeftJoin(dbContext.Tasks, p => p.WorkerServerID, s => s.ServerID, (a, g) => new
-                    //{
-                    //    g.Status,
-                    //    g.ServerID
-                    //}).Where(p => p.Status != "Done").GroupBy(g => g.ServerID).Select(p => new
-                    //{
-                    //    WorkerServerId = p.Key,
-                    //    count = p.Count()
-                    //}).OrderBy(p => p.count).FirstOrDefaultAsync();
-                return serverId;
+
+                return serverId?? 0;
             }
         }
 
@@ -41,7 +33,7 @@ namespace Data.Repository
                         a.IpAddress,
                         a.IsConnected,
                         a.Port
-                    }).GroupBy(g => g.ServerID).Select(p => new WorkerTaskDto()
+                    }).GroupBy(g => g.ServerID).Select(p => new WorkerTaskDto
                     {
                         IpAddress = p.Select(p=>p.IpAddress).First(),
                         TaskCount = p.Count(),
@@ -56,15 +48,31 @@ namespace Data.Repository
         {
             using (var dbContext = new LoadManagerContext())
             {
-                var server = await dbContext.Tasks.Where(p => p.TaskID == taskId).Select(p =>
-                    new {p.ServerID}).LeftJoin(dbContext.WorkerServers,
-                    p => p.ServerID, o => o.WorkerServerID, (a, g) => new WorkerServerDto
+                var serverId = await dbContext.Tasks.Where(p => p.TaskID == taskId).Select(p => p.ServerID).FirstAsync();
+
+                var server = await dbContext.WorkerServers.Where(p => p.WorkerServerID == serverId).Select(s =>
+                    new WorkerServerDto
                     {
-                        IpAddress = g.IpAddress,
-                        IsConnected = g.IsConnected,
-                        Port = g.Port,
-                        WorkerServerID = g.WorkerServerID
-                    }).FirstOrDefaultAsync();
+                        IpAddress = s.IpAddress,
+                        IsConnected = s.IsConnected,
+                        Port = s.Port,
+                        WorkerServerID = s.WorkerServerID
+                    }).FirstAsync();
+                //    new {p.ServerID, p.TaskID}).Where(p => p.TaskID == taskId)
+                //    .LeftJoin(dbContext.WorkerServers, p => p.ServerID, o => o.WorkerServerID, (a, g) => new
+                //    {
+                //        a.TaskID,
+                //        g.IpAddress,
+                //        g.IsConnected,
+                //        g.Port,
+                //        g.WorkerServerID
+                //    }).GroupBy(p => p.WorkerServerID).Select(p =>
+                //new WorkerServerDto {
+                //    IpAddress = p.IpAddress,
+                //    IsConnected = p.IsConnected,
+                //    Port = p.Port,
+                //    WorkerServerID = p.WorkerServerID
+                //}).FirstAsync();
 
                 return server;
             }
@@ -114,7 +122,8 @@ namespace Data.Repository
                 dbContext.WorkerServers.Add(new WorkerServer()
                 {
                     IpAddress = server.IpAddress,
-                    IsConnected = server.IsConnected
+                    IsConnected = server.IsConnected,
+                    Port = server.Port
                 });
                 return await dbContext.SaveChangesAsync() == 1;
             }
